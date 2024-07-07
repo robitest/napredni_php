@@ -6,4 +6,5 @@
 - namjestiti Apache server da mu je DocumentRoot /var/www/napredni_php
 - izvrsiti /SQL/videoteka.sql na lokalnoj bazi na vasim racunalima kako bi svi imali istu bazu sa 56 filmova
 
-- Nadobudni pokušaj stvaranja PDO klase za konekciju na bazu, čak i radi
+### Plus Vjezba
+- Nadobudni pokušaj stvaranja PDO klase za konekciju na bazu, cak i radi
