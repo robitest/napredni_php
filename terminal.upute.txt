@@ -1,0 +1,9 @@
+sudo cp -r /var/www/backend_developer_0/napredni_php/ /var/www/napredni_php
+sudo chown robi:robi -R /var/www/napredni_php/
+ll /etc/apache2/sites-enabled/
+ll /etc/apache2/sites-available/
+sudo a2dissite backend_developer_0
+sudo a2dissite napredni_php
+sudo nano /etc/apache2/sites-available/videoteka.conf 
+sudo a2ensite videoteka
+sudo systemctl restart apache2
