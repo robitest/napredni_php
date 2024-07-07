@@ -7,4 +7,5 @@
 - izvrsiti /SQL/videoteka.sql na lokalnoj bazi na vasim racunalima kako bi svi imali istu bazu sa 56 filmova
 
 ### Plus Vjezba
+
 - Nadobudni pokušaj stvaranja PDO klase za konekciju na bazu, cak i radi
