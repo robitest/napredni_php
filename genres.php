@@ -1,23 +1,39 @@
 <?php
 
 // MVC pattern -> Model - View - Controller
-// Genre page model
+// Genres page model
 
-$connection = mysqli_connect('localhost', 'algebra', 'algebra', 'videoteka');
+// PDO
+require 'controllers/Db.php';
 
-if($connection === false){
-    die("Connection failed: ". mysqli_connect_error());
-}
+$conn = new Db('localhost', 'algebra', 'algebra', 'videoteka');
 
 $sql = "SELECT * from zanrovi ORDER BY id;";
-$result = mysqli_query($connection, $sql);
 
-if (mysqli_num_rows($result) === 0) {
-    die("There are no generes in our datbase!");
-}
+$genres = $conn->getData($sql);
+$conn->closeConn();
 
-$genres = mysqli_fetch_all($result, MYSQLI_ASSOC);
+require 'views/genres.view.php';;
 
-mysqli_close($connection);
 
-require 'views/genres.view.php';
+
+// MySQLi Procedural
+//
+// $connection = mysqli_connect('localhost', 'algebra', 'algebra', 'videoteka');
+
+// if($connection === false){
+//     die("Connection failed: ". mysqli_connect_error());
+// }
+
+// $sql = "SELECT * from zanrovi ORDER BY id;";
+// $result = mysqli_query($connection, $sql);
+
+// if (mysqli_num_rows($result) === 0) {
+//     die("There are no generes in our datbase!");
+// }
+
+// $genres = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+// mysqli_close($connection);
+
+// require 'views/genres.view.php';

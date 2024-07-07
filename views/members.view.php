@@ -1,7 +1,7 @@
 <?php include_once 'partials/header.php' ?>
 
 <main class="container my-3 d-flex flex-column flex-grow-1">
-    <h1>Clanovi</h1>
+    <h1>Članovi</h1>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -10,7 +10,7 @@
                 <th>Adresa</th>
                 <th>Telefon</th>
                 <th>Email</th>
-                <th>Clanski broj</th>
+                <th>Članski broj</th>
             </tr>
         </thead>
         <tbody>
