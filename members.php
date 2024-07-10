@@ -1,18 +1,42 @@
 <?php
 // MVC pattern -> Model - View - Controller
-// Members page model
+// Members Page Controller
 
 // PDO
-require 'controllers/Db.php';
+// $dsn = "mysql:" . http_build_query($config, '', ';');
+$dsn = 'mysql:host=localhost;dbname=videoteka;user=algebra;password=algebra;charset=utf8mb4';
 
-$conn = new Db('localhost', 'algebra', 'algebra', 'videoteka');
+try {
+    $pdo = new PDO($dsn);
+} catch (\Throwable $th) {
+    die("Connection failed:");
+}
 
-$sql = "SELECT * from clanovi;";
+$sql = "SELECT * from clanovi";
+$statement = $pdo->prepare($sql);
+$statement->execute();
 
-$members = $conn->getData($sql);
-$conn->closeConn();
+$members = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+$pageTitle = 'Članovi';
 
 require 'views/members.view.php';
+
+// Nek se nađe ako zatreba
+//
+
+// require 'classes/Db.php';
+
+// $conn = new Db('localhost', 'algebra', 'algebra', 'videoteka');
+
+// $sql = "SELECT * from clanovi;";
+
+// $members = $conn->getData($sql);
+// $conn->closeConn();
+
+// $title = "Članovi";
+
+// require 'views/members.view.php';
 
 
 

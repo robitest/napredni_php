@@ -7,16 +7,25 @@
 
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="/" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-house me-2"></i>Početna</a>
+            <a href="/" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/' ? 'active' : '' ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/' ? 'page' : '' ?> "><i class="bi bi-house me-2"></i>Početna</a>
         </li>
         <li class="nav-item">
-            <a href="members.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/members.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-person-circle me-2"></i>Članovi</a>
+            <a href="members.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/members.php' ? 'active' : '' ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/members.php' ? 'page' : '' ?>"><i class="bi bi-person-circle me-2"></i>Članovi</a>
         </li>
         <li class="nav-item">
-            <a href="genres.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/genres.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-camera-reels me-2"></i>Žanrovi</a>
+            <a href="genres.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/genres.php' ? 'active' : '' ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/genres.php' ? 'page' : '' ?>"><i class="bi bi-camera-reels me-2"></i>Žanrovi</a>
         </li>
         <li class="nav-item">
-            <a href="movies.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/movies.php' ? 'active' : '' ?>" aria-current="page"><i class="bi bi-film me-2"></i>Filmovi</a>
+            <a href="movies.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/movies.php' ? 'active' : '' ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/movies.php' ? 'page' : '' ?>"><i class="bi bi-film me-2"></i>Filmovi</a>
+        </li>
+        <li class="nav-item">
+            <a href="priceList.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/priceList.php' ? 'active' : '' ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/priceList.php' ? 'page' : '' ?>"><i class="bi bi-tag me-2"></i>Cjenik</a>
+        </li>
+        <li class="nav-item">
+            <a href="media.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/media.php' ? 'active' : '' ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/media.php' ? 'page' : '' ?>"><i class="bi bi-collection-play me-2"></i>Mediji</a>
+        </li>
+        <li class="nav-item">
+            <a href="lending.php" class="nav-link text-white link-primary <?= $_SERVER['REQUEST_URI'] === '/lending.php' ? 'active' : '' ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/lending.php' ? 'page' : '' ?>"><i class="bi bi-calendar3 me-2"></i>Posudbe</a>
         </li>
     </ul>
 

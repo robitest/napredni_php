@@ -12,7 +12,7 @@ class Vlasnik {
     private string $prezime;
     private string $godine;
     private string $spol;
-    private ?string $adresa; //can be Null
+    private ?string $adresa;
 
     public function __construct(string $ime, string $prezime, int $godine, string $spol, $adresa) {
         $this->ime = $ime;
@@ -22,9 +22,8 @@ class Vlasnik {
         $this->adresa = $adresa;
     }
 
-    public function hasOne()
+    public function posjeduje()
     {
-
         
     }
 

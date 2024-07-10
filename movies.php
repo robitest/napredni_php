@@ -1,27 +1,58 @@
 <?php
 // MVC pattern -> Model - View - Controller
-// Movies page model
+// Movies Page Controller
 
 // PDO
-require 'controllers/Db.php';
+// $dsn = "mysql:" . http_build_query($config, '', ';');
+$dsn = 'mysql:host=localhost;dbname=videoteka;user=algebra;password=algebra;charset=utf8mb4';
 
-$conn = new Db('localhost', 'algebra', 'algebra', 'videoteka');
+try {
+    $pdo = new PDO($dsn);
+} catch (\Throwable $th) {
+    die("Connection failed:");
+}
 
 $sql = "SELECT 
-            f.id,
-            f.naslov,
-            f.godina,
-            z.ime AS zanr,
-            c.tip_filma AS cjenik
-        FROM 
-            filmovi f
-        JOIN zanrovi z ON z.id = f.zanr_id
-        JOIN cjenik c ON c.id = f.cjenik_id
-        ORDER BY f.id;";
+             f.id,
+             f.naslov,
+             f.godina,
+             z.ime AS zanr,
+             c.tip_filma AS cjenik
+         FROM 
+             filmovi f
+         JOIN zanrovi z ON z.id = f.zanr_id
+         JOIN cjenik c ON c.id = f.cjenik_id
+         ORDER BY f.id;";
+$statement = $pdo->prepare($sql);
+$statement->execute();
 
-$movies = $conn->getData($sql);
-$conn->closeConn();
+$movies = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+$pageTitle = 'Filmovi';
+
 require 'views/movies.view.php';
+
+// Nek se nađe ako zatreba
+//
+
+// require 'controllers/Db.php';
+
+// $conn = new Db('localhost', 'algebra', 'algebra', 'videoteka');
+
+// $sql = "SELECT 
+//             f.id,
+//             f.naslov,
+//             f.godina,
+//             z.ime AS zanr,
+//             c.tip_filma AS cjenik
+//         FROM 
+//             filmovi f
+//         JOIN zanrovi z ON z.id = f.zanr_id
+//         JOIN cjenik c ON c.id = f.cjenik_id
+//         ORDER BY f.id;";
+
+// $movies = $conn->getData($sql);
+// $conn->closeConn();
 
 
 // MySQLi Procedural
