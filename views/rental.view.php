@@ -19,15 +19,15 @@
         <tbody>
             <?php
                 $count = 1;
-                foreach ($lendings as $lending): 
+                foreach ($rentals as $rental): 
                     // Računjanje razlike dana za zakasninu ako datum povrata nije null 
                     // Naravno ovo je samo malo vježba pošto u upitu imamo definirano WHERE datum povrata IS NULL, znači nema magije
                     // AKO obrišemo WHERE datum povrata IS NULL u SQL upitu, zabava počinje
                     $diff = 0;
-                    if($lending['datum_povrata'] !== NULL){
-                        $date1 = date_create($lending['datum_posudbe']);
+                    if($rental['datum_povrata'] !== NULL){
+                        $date1 = date_create($rental['datum_posudbe']);
                         // dd($date1);
-                        $date2 = date_create($lending['datum_povrata']);
+                        $date2 = date_create($rental['datum_povrata']);
                         // dd($date2);
                         $dateDiff = date_diff($date1, $date2);
                         // dd($dateDiff);
@@ -38,15 +38,15 @@
                 ?>
                 <tr>
                     <td><?= $count ?></td>
-                    <td><?= $lending['clan_ime'] . " " . $lending['clan_prezime'] ?></td>
-                    <td><?= $lending['naslov_filma'] ?></td>
-                    <td><?= $lending['cijena_filma'] ?></td>
-                    <td><?= $lending['datum_posudbe'] ?></td>
-                    <td><?= $lending['datum_povrata'] === NULL ? 'Nije vraćen' : $lending['datum_povrata'] ?></td>
+                    <td><?= $rental['clan_ime'] . " " . $rental['clan_prezime'] ?></td>
+                    <td><?= $rental['naslov_filma'] ?></td>
+                    <td><?= $rental['cijena_filma'] ?></td>
+                    <td><?= $rental['datum_posudbe'] ?></td>
+                    <td><?= $rental['datum_povrata'] === NULL ? 'Nije vraćen' : $rental['datum_povrata'] ?></td>
                     <!-- zfdp = zakasnina filma po danu -->
-                    <td><?= $lending['zfpd'] ?></td>
+                    <td><?= $rental['zfpd'] ?></td>
                     <!--  Računjanje ukupne cijene sa if/else -->
-                    <td><?= $lending['datum_povrata'] === NULL ? $lending['cijena_filma'] : $lending['cijena_filma'] + ($lending['zfpd'] * $diff)?></td>
+                    <td><?= $rental['datum_povrata'] === NULL ? $rental['cijena_filma'] : $rental['cijena_filma'] + ($rental['zfpd'] * $diff)?></td>
                     <td>
                         <a href="#" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Member"><i class="bi bi-pencil"></i></a>
                         <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Member"><i class="bi bi-trash"></i></button>

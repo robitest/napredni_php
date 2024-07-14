@@ -1,4 +1,3 @@
-
 <?php
 
 function dd($var)
@@ -120,7 +119,7 @@ mysqli_close($connection);
                     
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 flex-grow-1">
                         <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
-                        <li><a href="/members.php" class="nav-link px-2 text-dark">Dashboard</a></li>
+                        <li><a href="/controllers/members.php" class="nav-link px-2 text-dark">Dashboard</a></li>
                         <li><a href="#" class="nav-link px-2 text-dark">Pricing</a></li>
                         <li><a href="#" class="nav-link px-2 text-dark">FAQs</a></li>
                         <li><a href="#" class="nav-link px-2 text-dark">About</a></li>

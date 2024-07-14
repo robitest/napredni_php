@@ -39,51 +39,10 @@ $sql = "SELECT  p.id AS posudba_id,
 $statement = $pdo->prepare($sql);
 $statement->execute();
 
-$lendings = $statement->fetchAll(PDO::FETCH_ASSOC);
+$rental = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 $pageTitle = 'Posudbe';
 
-require 'views/lending.view.php';
-
-// Nek se nađe ako zatreba
-//
-
-// PDO
-//
-// require 'classes/Db.php';
-
-// $conn = new Db('localhost', 'algebra', 'algebra', 'videoteka');
-
-// $sql = "SELECT * from zanrovi ORDER BY id;";
-
-// $genres = $conn->getData($sql);
-// $conn->closeConn();
-
-// $title = "Žanrovi";
-
-// var_dump($_SERVER);
-
-// require 'views/genres.view.php';
+require '../views/rental.view.php';
 
 
-
-// MySQLi Procedural
-//
-// $connection = mysqli_connect('localhost', 'algebra', 'algebra', 'videoteka');
-
-// if($connection === false){
-//     die("Connection failed: ". mysqli_connect_error());
-// }
-
-// $sql = "SELECT * from zanrovi ORDER BY id;";
-// $result = mysqli_query($connection, $sql);
-
-// if (mysqli_num_rows($result) === 0) {
-//     die("There are no generes in our datbase!");
-// }
-
-// $genres = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-// mysqli_close($connection);
-
-// require 'views/genres.view.php';

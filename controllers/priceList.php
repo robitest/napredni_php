@@ -1,7 +1,7 @@
 <?php
 
 // MVC pattern -> Model - View - Controller
-// Media Page Controller
+// Genres Page Controller
 
 // PDO
 // $dsn = "mysql:" . http_build_query($config, '', ';');
@@ -13,14 +13,12 @@ try {
     die("Connection failed:");
 }
 
-$sql = "SELECT * from mediji";
+$sql = "SELECT * from cjenik";
 $statement = $pdo->prepare($sql);
 $statement->execute();
 
-$media = $statement->fetchAll(PDO::FETCH_ASSOC);
+$priceList = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-$pageTitle = 'Mediji';
+$pageTitle = 'Cjenik';
 
-require 'views/media.view.php';
-
-?>
+require '../views/priceList.view.php';
