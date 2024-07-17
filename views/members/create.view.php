@@ -1,12 +1,11 @@
 <?php 
-include_once 'partials/header.php' 
+include_once base_path('views/partials/header.php');
 ?>
-
-<main class="container my-3 d-flex flex-column flex-grow-1 ">
+<main style="height:72.9vh;" class="container my-3 d-flex flex-column flex-grow-1 ">
     <h1>Dodaj novog Člana</h1>
     <hr>
 
-    <form class="p-4" action="../controllers/member-create.php" method="POST">
+    <form class="p-4" action="/members/store" method="POST">
         <div class="row mb-3">
             <div class="col">
                 <label for="first_name" class="form-label ps-1">Ime</label>
@@ -44,6 +43,4 @@ include_once 'partials/header.php'
 
 </main>
 
-<?php 
-    include_once 'partials/footer.php';
-?>
+<?php include_once base_path('views/partials/footer.php') ?>

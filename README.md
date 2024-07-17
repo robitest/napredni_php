@@ -1,3 +1,9 @@
+### 4/Zadaca
+
+- napraviti members i movies po uzoru na predavanje sa custom rutama i kontrolerima i pogledima svrstanim po folderima
+
+
+
 ### 3/Zadaca
 
 - napraviti members-create.php koristeci najblje prakse sa zadnjeg predavanja

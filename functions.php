@@ -15,6 +15,33 @@ function dd($var)
     die();
 }
 
+function base_path($path): string
+{
+    return __DIR__ . DIRECTORY_SEPARATOR . $path;
+}
+
+function abort($code = 404)
+{
+    http_response_code($code);
+    require base_path("views/errors/404.php");
+    die;
+}
+
+function redirect($path)
+{
+    header("Location:/$path");
+    exit();
+}
+
+function setActivePage($cont, $url)
+{   
+    $contPath = explode('/', rtrim($url, '/'));
+    if($cont === $contPath[1]){
+        return 'active';
+    }else{
+        return '';
+    }  
+}
 
 // // autoload classes
 // spl_autoload_register(function ($class_name) {
@@ -26,8 +53,4 @@ function dd($var)
 //         require_once $file;
 //     }
 // });
-
-// function base_path($path = '/'): string
-// {
-//     return dirname(__DIR__) . DIRECTORY_SEPARATOR . $path;
 // }

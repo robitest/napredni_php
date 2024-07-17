@@ -71,10 +71,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
                                 
     http_response_code(200);
-    header('Location:/controllers/members.php');
+    header('Location:/members');
 }
 
 
-
-require '../views/member-create.view.php';
 

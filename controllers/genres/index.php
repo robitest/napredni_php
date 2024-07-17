@@ -1,13 +1,5 @@
 <?php
 
-// MVC pattern -> Model - View - Controller
-// Genres Page Controller
-// PDO-OOP
-
-
-require_once '../functions.php';
-require_once '../classes/Database.php';
-
 $db = new Database();
 
 try {
@@ -19,4 +11,4 @@ try {
 
 $pageTitle = 'Žanrovi';
 
-require '../views/genres.view.php';
+require '../views/genres/index.view.php';

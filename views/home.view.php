@@ -1,102 +1,3 @@
-<?php
-
-function dd($var)
-{
-    echo '<pre>';
-    var_dump($var);
-    echo '</pre>';
-    die();
-}
-
-$connection = mysqli_connect('localhost', 'algebra', 'algebra', 'videoteka');
-
-if($connection === false){
-    die("Connection failed: ". mysqli_connect_error());
-}
-
-const QUERY = [
-    'popularMovies'
-        => "SELECT
-            f.naslov AS naslov_filma,
-            f.godina AS godina_filma,
-            z.ime AS zanr,
-            c.tip_filma,
-            COUNT(f.id) AS broj_posudbi
-        FROM
-            filmovi f
-            JOIN zanrovi z ON f.zanr_id = z.id
-            JOIN kopija k ON k.film_id = f.id
-            JOIN posudba_kopija pk ON pk.kopija_id = k.id
-            JOIN posudba ps ON pk.posudba_id = ps.id
-            JOIN cjenik c ON f.cjenik_id = c.id
-        WHERE ps.datum_posudbe > '2024-01-01'
-        GROUP BY k.film_id
-        ORDER BY broj_posudbi DESC
-        LIMIT 3",
-    'moviesWithGenres'
-        => "SELECT
-                f.naslov AS naslov_filma,
-                f.godina AS godina_filma,
-                z.ime AS zanr,
-                c.tip_filma
-            FROM
-                zanrovi z
-                JOIN filmovi f ON f.zanr_id = z.id
-                JOIN cjenik c ON f.cjenik_id = c.id",
-    'combined'
-        => "SELECT 
-            genre_name,
-            movie_title,
-            movie_year
-        FROM (
-            SELECT 
-                zanrovi.ime AS genre_name,
-                filmovi.naslov AS movie_title,
-                filmovi.godina AS movie_year,
-                ROW_NUMBER() OVER (PARTITION BY zanrovi.ime ORDER BY filmovi.naslov) as rn
-            FROM 
-                filmovi
-            JOIN 
-                zanrovi ON filmovi.zanr_id = zanrovi.id
-        ) as delivery_table
-        WHERE rn <= 5
-        ORDER BY genre_name, movie_title"
-];
-
-function getData(mysqli $connection, $sql): array
-{
-    $result = mysqli_query($connection, $sql);
-
-    if (mysqli_num_rows($result) === 0) {
-        return ['error' => "nema podataka za upit"];// TODO: refactor this
-    }
-
-    return mysqli_fetch_all($result, MYSQLI_ASSOC);
-}
-
-$popularMovies = getData($connection, QUERY['popularMovies']);
-$moviesWithGenres = getData($connection, QUERY['moviesWithGenres']);
-$moviesByGenre = [];
-
-foreach ($moviesWithGenres as $key => $movie) {
-    $genreName = $movie['zanr'];
-
-    if(!isset($moviesByGenre[$genreName])){
-        $moviesByGenre[$genreName] = [];
-
-    }
-
-    if (count($moviesByGenre[$genreName]) < 5){
-        $moviesByGenre[$genreName][] = $movie;
-    }
-}
-// dd($moviesByGenre);
-
-
-mysqli_close($connection);
-
-
-?>
 
 <!doctype html>
 <html lang="en">
@@ -118,8 +19,8 @@ mysqli_close($connection);
                     </a>
                     
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 flex-grow-1">
-                        <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
-                        <li><a href="/controllers/members.php" class="nav-link px-2 text-dark">Dashboard</a></li>
+                        <li><a href="#" class="nav-link px-2 text-secondary active">Home</a></li>
+                        <li><a href="/members" class="nav-link px-2 text-dark">Dashboard</a></li>
                         <li><a href="#" class="nav-link px-2 text-dark">Pricing</a></li>
                         <li><a href="#" class="nav-link px-2 text-dark">FAQs</a></li>
                         <li><a href="#" class="nav-link px-2 text-dark">About</a></li>

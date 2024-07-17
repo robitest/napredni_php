@@ -1,9 +1,4 @@
 <?php
-// MVC pattern -> Model - View - Controller
-// Members Page Controller
-// PDO-OOP
-
-require_once '../classes/Database.php';
 
 $db = new Database();
 
@@ -16,4 +11,4 @@ try {
 
 $pageTitle = 'Članovi';
 
-require '../views/members.view.php';
+require '../views/members/index.view.php';

@@ -1,10 +1,12 @@
-<?php include_once 'partials/header.php' ?>
-
-<main class="container my-3 d-flex flex-column flex-grow-1">
+<?php 
+require_once '/var/www/napredni_php/functions.php';
+include_once base_path('views/partials/header.php');
+?>
+<main class="container my-3 d-flex flex-column flex-grow-1 ">
     <div class="title flex-between">
         <h1><?=isset($pageTitle) ? $pageTitle : 'Videoteka Admin';?></h1>
         <div class="action-buttons">
-            <a href="../controllers/member-create.php" type="submit" class="btn btn-primary">Dodaj novi</a>
+            <a href="/members/create" type="submit" class="btn btn-primary">Dodaj novi</a>
         </div>
     </div>
 
@@ -40,4 +42,4 @@
     </table>
 </main>
 
-<?php include_once 'partials/footer.php' ?>
+<?php include_once base_path('views/partials/footer.php') ?>

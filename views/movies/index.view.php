@@ -1,7 +1,13 @@
-<?php include_once 'partials/header.php' ?>
+<?php 
+include_once base_path('views/partials/header.php') ?>
 
 <main class="container my-3 d-flex flex-column flex-grow-1">
-    <h1><?=isset($pageTitle) ? $pageTitle : 'Videoteka Admin';?></h1>
+    <div class="title flex-between">
+        <h1><?=isset($pageTitle) ? $pageTitle : 'Videoteka Admin';?></h1>
+        <div class="action-buttons">
+            <a href="/movies/create" type="submit" class="btn btn-primary">Dodaj novi</a>
+        </div>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -19,7 +25,7 @@
                     <td><?= $movie['naslov'] ?></td>
                     <td><?= $movie['godina'] ?></td>
                     <td><?= $movie['zanr'] ?></td>
-                    <td><?= $movie['cjenik'] ?></td>
+                    <td><?= $movie['tip_filma'] ?></td>
                     <td>
                         <a href="#" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Movie"><i class="bi bi-pencil"></i></a>
                         <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Movie"><i class="bi bi-trash"></i></button>
@@ -30,4 +36,4 @@
     </table>
 </main>
 
-<?php include_once 'partials/footer.php' ?>
+<?php include_once base_path('views/partials/footer.php') ?>
