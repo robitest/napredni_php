@@ -22,13 +22,17 @@ include_once base_path('views/partials/header.php') ?>
             <?php foreach ($movies as $movie): ?>
                 <tr>
                     <td><?= $movie['id'] ?></td>
-                    <td><?= $movie['naslov'] ?></td>
+                    <td><a href="/movies/show?id=<?= $movie['id'] ?>"><?= $movie['naslov'] ?></a></td>
                     <td><?= $movie['godina'] ?></td>
                     <td><?= $movie['zanr'] ?></td>
                     <td><?= $movie['tip_filma'] ?></td>
                     <td>
-                        <a href="#" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Movie"><i class="bi bi-pencil"></i></a>
-                        <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Movie"><i class="bi bi-trash"></i></button>
+                        <a href="/movies/edit?id=<?= $movie['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Film"><i class="bi bi-pencil"></i></a>
+                        <form id="delete-form" class="hidden d-inline" method="POST" action="/movies/destroy">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="id" value="<?= $movie['id'] ?>">
+                            <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Obrisi Zanr"><i class="bi bi-trash"></i></button>
+                        </form>
                     </td>
                 </tr>
             <?php endforeach ?>

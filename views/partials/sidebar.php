@@ -26,7 +26,7 @@
             <a href="/media" class="nav-link text-white link-primary <?= setActivePage('media', $_SERVER['REQUEST_URI']) ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/controllers/media.php' ? 'page' : '' ?>"><i class="bi bi-collection-play me-2"></i>Mediji</a>
         </li>
         <li class="nav-item">
-            <a href="/rental" class="nav-link text-white link-primary <?= setActivePage('rental', $_SERVER['REQUEST_URI']) ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/controllers/lending.php' ? 'page' : '' ?>"><i class="bi bi-calendar3 me-2"></i>Posudbe</a>
+            <a href="/rentals" class="nav-link text-white link-primary <?= setActivePage('rental', $_SERVER['REQUEST_URI']) ?>" aria-current="<?= $_SERVER['REQUEST_URI'] === '/controllers/rentals.php' ? 'page' : '' ?>"><i class="bi bi-calendar3 me-2"></i>Posudbe</a>
         </li>
     </ul>
 

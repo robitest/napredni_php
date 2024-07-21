@@ -16,6 +16,7 @@ include_once base_path('views/partials/header.php') ?>
                 <input type="number" class="form-control" id="movieYear" name="movie_year"><!--  $_POST['last_name'] => 'Novo Prezime'; -->
             </div>
         </div>
+        
         <div class="row mb-3">
             <div class="col">
                 <label for="movie_year" class="form-label ps-1">Žanr</label>
@@ -30,8 +31,8 @@ include_once base_path('views/partials/header.php') ?>
                 <label for="movie_year" class="form-label ps-1">Cjenik</label>
                 <select class="form-select" aria-label="Default select example" name="price">
                     <option selected>Odaberite cijenu</option>
-                    <?php foreach ($priceList as $priceItem): ?>
-                        <option value="<?= $priceItem['id'] ?>"><?= $priceItem['tip_filma'] . " - Cijena " .  $priceItem['cijena'] . " EUR - zakasnina_po_danu " . $priceItem['zakasnina_po_danu'] . " EUR"?></option>
+                    <?php foreach ($priceList as $price): ?>
+                        <option value="<?= $price['id'] ?>"><?= $price['tip_filma'] . " - Cijena " .  $price['cijena'] . " EUR - zakasnina_po_danu " . $price['zakasnina_po_danu'] . " EUR"?></option>
                     <?php endforeach ?>
                 </select>
             </div>

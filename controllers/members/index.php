@@ -1,5 +1,7 @@
 <?php
 
+use Core\Database;
+
 $db = new Database();
 
 try {
@@ -11,4 +13,4 @@ try {
 
 $pageTitle = 'Članovi';
 
-require '../views/members/index.view.php';
+require base_path('views/members/index.view.php');

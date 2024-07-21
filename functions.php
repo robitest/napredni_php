@@ -43,14 +43,19 @@ function setActivePage($cont, $url)
     }  
 }
 
-// // autoload classes
-// spl_autoload_register(function ($class_name) {
-//     $class_name = str_replace('\\', DIRECTORY_SEPARATOR, $class_name);
+function checkStringLength($string, $min, $max): string
+{
+    return strlen($string) < $min || strlen($string) > $max;
+}
 
-//     $file = base_path($class_name) . '.php';
+function getCurrency($currency): string
+{   
+    return " " . $currency;
+}
 
-//     if (file_exists($file)) {
-//         require_once $file;
-//     }
-// });
-// }
+function getFullName($firstName, $lastName): string
+{
+    return $firstName . " " . $lastName;
+}
+
+

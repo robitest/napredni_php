@@ -1,11 +1,9 @@
 <?php
-require_once '../functions.php';
-require_once '../classes/Database.php';
 
+use Core\Database;
 
-
-if($_SERVER['REQUEST_METHOD'] === 'POST'){ 
-
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    
     $data = [
         "ime" => $_POST['first_name'],
         "prezime" => $_POST['last_name'],
@@ -24,12 +22,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     // Provjera je li niz imena i prezimena između 3 i 30 slova  
-    if((strlen($data['ime']) < 3 || strlen($data['ime']) > 30) && (strlen($data['prezime']) < 3 || strlen($data['prezime']) > 30)){
-        dd("Polje ime treba imati izmedu 3 i 30 slova");
+    if(checkStringLength($data['ime'], 3, 30) && checkStringLength($data['ime'], 3, 30)){ // todo checkStringLength($string, $min, $max);
+        dd("Polje ime treba imati izmedu 3 i 30 slova"); 
     }
     
     // Provjera da li adresa nema vise od 100 slova 
-    if(strlen($data['ime']) < 3 || strlen($data['ime']) > 30){
+    if(checkStringLength($data['adresa'], 0, 100)){
         dd("Polje ime treba imati izmedu 3 i 30 slova");
     }
     
@@ -42,7 +40,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
         dd("Polje treba sadrzavati validnu email adresu");
     }
-
     
     $db = new Database();
     // check if email already exsists in db
@@ -54,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     $sql = "INSERT INTO clanovi (ime, prezime, adresa, telefon, email, clanski_broj) VALUES (:ime, :prezime, :adresa, :telefon, :email, :clanski_broj)";
-
+    
     try {
         $success = $db->query($sql, [
                                         'ime' => $data['ime'], 
@@ -69,10 +66,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     } catch (\Throwable $th) {
         throw $th;
     }
-                                
-    http_response_code(200);
-    header('Location:/members');
+    
+    redirect('members');
+} else {
+    dd('Unsupported method!');
 }
+
+
 
 
 
