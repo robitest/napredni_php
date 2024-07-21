@@ -1,4 +1,4 @@
-### /Zadaca
+### 5/Zadaca
 
 Za Clanove videoteke napraviti rute, kontrolere i poglede za:
 - prikaz informacija o pojedinom clanu (show)
