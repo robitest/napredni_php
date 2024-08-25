@@ -6,8 +6,9 @@ if (!isset($_POST['id'] ) || !isset($_POST['_method']) || $_POST['_method'] !== 
     abort();
 }
 
-$db = new Database();
+$db = Database::get();
 
-$db->query('DELETE FROM zanrovi WHERE id = ?', [$_POST['id']]);
+$sql = "DELETE FROM mediji WHERE id= ?";
+$db->query($sql, [$_POST['id']])->find();
 
-redirect('genres');
+redirect('media');

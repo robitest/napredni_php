@@ -4,20 +4,12 @@ use Core\Database;
 
 if (isset($_GET['id'])) {
 
-    $db = new Database();
-
-    $sql = 'SELECT * from clanovi WHERE id = :id';
+    $db = Database::get();
     
-    try {
-        $members = $db->fetch($sql, [
-            'id' => $_GET['id']
-        ]);
 
-        if (empty($members)) {
-            abort();
-        }
-    } catch (\PDOException $exception) {
-        throw $exception;
+    $members = $db->query('SELECT * from clanovi WHERE id = :id', ['id' => $_GET['id']])->find();
+    if (empty($members)) {
+        abort();
     }
 
     require base_path('views/members/show.view.php');

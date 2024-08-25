@@ -1,10 +1,12 @@
 <?php
 
 use Core\Database;
+use Core\Validator;
+use Core\Session;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
-    $data = [
+    $postData = [
         "ime" => $_POST['first_name'],
         "prezime" => $_POST['last_name'],
         "adresa" => $_POST['address'],
@@ -12,40 +14,27 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         "email" => $_POST['email'],
         "clanId" => $_POST['member_id']
     ];
+    
+    $rules = [
+        'ime' => ['required', 'string', 'max:100', 'unique:zanrovi'],
+        'prezime' => ['required', 'string', 'max:100', 'unique:zanrovi'],
+        'adresa' => ['required', 'string', 'max:100', 'unique:zanrovi'],
+        'tel' => ['required', 'string', 'max:100', 'unique:zanrovi'],
+        'email' => ['required', 'string', 'max:100', 'unique:zanrovi'],
+        'clanId' => ['required', 'string', 'max:100', 'unique:clanovi'],
+    ];
 
-    // Validacija forme pomoću foreach petlje
-    foreach ($data as $key => $value) {
-        // Provjera ima li praznih polja
-        if(empty($value)){
-            dd("Polje $key ne smije biti prazno");
-        }
-    }
-
-    // Provjera je li niz imena i prezimena između 3 i 30 slova  
-    if(checkStringLength($data['ime'], 3, 30) && checkStringLength($data['ime'], 3, 30)){ // todo checkStringLength($string, $min, $max);
-        dd("Polje ime treba imati izmedu 3 i 30 slova"); 
+    $form = new Validator($rules, $postData);
+    if ($form->notValid()){
+        Session::flash('errors', $form->errors());
+        goBack();
     }
     
-    // Provjera da li adresa nema vise od 100 slova 
-    if(checkStringLength($data['adresa'], 0, 100)){
-        dd("Polje ime treba imati izmedu 3 i 30 slova");
-    }
-    
-    // Provjera je li telefon broj  
-    if(!filter_var($data['tel'], FILTER_VALIDATE_INT)){
-        dd("Polje telefon treba sadrzavati samo brojeve");
-    }
-
-    // Provjera li je email validan 
-    if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-        dd("Polje treba sadrzavati validnu email adresu");
-    }
+    $data = $form->getData();
     
     $db = new Database();
     // check if email already exsists in db
-    $sql = "SELECT id FROM clanovi WHERE email = ?";
-    $count = $db->query($sql, [$data['email']]);
-    
+    $count = $db->query('SELECT id FROM clanovi WHERE email = ?', [$data['email']])->find();
     if(!empty($count)){
         die("Član sa emailom {$data['email']} vec postoji u nasoj bazi!");
     }

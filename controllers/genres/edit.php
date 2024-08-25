@@ -6,13 +6,9 @@ if (!isset($_GET['id'])) {
     abort();
 }
 
-$db = new Database();
+$db = Database::get();
 
-$genre = $db->fetch('SELECT * FROM zanrovi WHERE id = ?', [$_GET['id']]);
-
-if(empty($genre)){
-    abort();
-}
+$genre = $db->query('SELECT * FROM zanrovi WHERE id = ?', [$_GET['id']])->findOrFail();
 
 $pageTitle = 'Žanrovi';
 

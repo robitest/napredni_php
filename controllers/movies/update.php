@@ -15,7 +15,7 @@ $data = [
     "zanr_id" => $_POST['genre'],
     "cjenik_id" => $_POST['price'],
 ];
-$db = new Database();
+$db = Database::get();
 $movies = $db->query('SELECT * FROM filmovi WHERE id = ? ', [$data['id']]);
 
 

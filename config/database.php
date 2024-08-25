@@ -1,8 +1,5 @@
 <?php
 
-namespace CORE;
-use PDO;
-
 return [
     'host' => 'localhost',
     'dbname' => 'videoteka',

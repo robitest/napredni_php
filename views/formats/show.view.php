@@ -25,12 +25,12 @@
                 <label for="zanr" class="mt-1">Zakasnina Po Danu:</label>
             </div>
             <div class="col-6">
-                <input type="text" class="form-control" id="zanr" name="zanr" value="<?= $media['koeficijent'] . getCurrency('EUR');?>" disabled>
+                <input type="text" class="form-control" id="zanr" name="zanr" value="<?= $media['koeficijent'];?> EUR" disabled>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-auto">
-            <a href="/media" type="submit" class="btn btn-primary">Natrag na Medije</a>
+                <a href="<?= $_SERVER['HTTP_REFERER'] ?>" type="submit" class="btn btn-primary">Natrag</a>
             </div>
         </div>
     </form>

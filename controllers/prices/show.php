@@ -4,18 +4,18 @@ use Core\Database;
 
 if (isset($_GET['id'])) {
 
-    $db = new Database();
+    $db = Database::get();
     
     try {
-        $priceList= $db->fetch('SELECT * FROM cjenik WHERE id = ?', [$_GET['id']]);
-        if(empty($priceList)){
+        $prices= $db->query('SELECT * FROM cjenik WHERE id = ?', [$_GET['id']])->find();
+        if(empty($prices)){
             abort();
         }
     } catch (\PDOException $exception) {
         throw $exception;
     }
 
-    require base_path('views/priceList/show.view.php');
+    require base_path('views/prices/show.view.php');
 } else {
     abort();
 }

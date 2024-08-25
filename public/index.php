@@ -2,12 +2,9 @@
 
 // CRUD => C = create; R = read; U = update; D = delete
 
-use Vjezbe\ElectricCar as ElCar;
-use Alex\Vjezbe\ElectricCar;
-use Vjezbe\Car;
-use Vjezbe\Driveable;
+session_start();
 
-require_once '../functions.php';
+require_once '../Core/functions.php';
 require_once base_path('Core/bootstrap.php');
 require_once base_path('Core/router.php');
 

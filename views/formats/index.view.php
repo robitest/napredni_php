@@ -4,7 +4,7 @@
     <div class="title flex-between">
         <h1><?=isset($pageTitle) ? $pageTitle : 'Videoteka Admin';?></h1>
         <div class="action-buttons">
-            <a href="/media/create" type="submit" class="btn btn-primary">Dodaj novi</a>
+            <a href="/formats/create" type="submit" class="btn btn-primary">Dodaj novi</a>
         </div>
     </div>
 
@@ -23,10 +23,11 @@
             <?php foreach ($media as $m): ?>
                 <tr>
                     <td><?= $m['id'] ?></td>
-                    <td><a href="/media/show?id=<?= $m['id'] ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Pogledaj Medij"><?= $m['tip'] ?></a></td>
+                    <td><a href="/formats/show?id=<?= $m['id'] ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Pogledaj Medij"><?= $m['tip'] ?></a></td>
+                    <td><?= $m['koeficijent'] ?></td>
                     <td>
-                        <a href="/media/edit?id=<?= $m['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Medij"><i class="bi bi-pencil"></i></a>
-                        <form id="delete-form" class="hidden d-inline" method="POST" action="/media/destroy">
+                        <a href="/formats/edit?id=<?= $m['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Medij"><i class="bi bi-pencil"></i></a>
+                        <form id="delete-form" class="hidden d-inline" method="POST" action="/formats/destroy">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="id" value="<?= $m['id'] ?>">
                             <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Obrisi Medij"><i class="bi bi-trash"></i></button>

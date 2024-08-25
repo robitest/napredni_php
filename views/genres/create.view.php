@@ -1,5 +1,4 @@
-<?php 
-include_once base_path('views/partials/header.php') ?>
+<?php include_once base_path('views/partials/header.php') ?>
 
 <main class="container my-3 d-flex flex-column flex-grow-1 vh-100">
     <h1>Dodaj novi Žanr</h1>
@@ -10,7 +9,8 @@ include_once base_path('views/partials/header.php') ?>
             <label for="zanr" class="mt-1">Naziv Žanra</label>
         </div>
         <div class="col-6">
-            <input type="text" class="form-control" id="zanr" name="zanr"><!--  $_POST['zanr'] => 'Novi zanr'; -->
+            <input type="text" class="form-control <?= isset($errors['ime']) ? 'is-invalid' : '' ?>" id="zanr" name="zanr"><!--  $_POST['zanr'] => 'Novi zanr'; -->
+            <span class="invalid-feedback"><?= $errors['ime'] ?? '' ?></span>
         </div>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3">Spremi</button>

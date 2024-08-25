@@ -14,5 +14,5 @@
 
         <?php include_once 'sidebar.php' ?>
         
-        <div style="height:100%;" class="content d-flex flex-column flex-grow-1">
+        <div class="content d-flex flex-column flex-grow-1">
             <?php include_once 'nav.php' ?>

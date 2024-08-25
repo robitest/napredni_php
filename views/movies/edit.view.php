@@ -39,7 +39,7 @@
         </div>
         <div class="col-3">
             <button type="submit" class="btn btn-primary mb-3">Spremi</button>
-            <a href="/movies" type="submit" class="btn btn-primary mb-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cancel">X</a>
+            <a href="/movies" type="submit" class="btn btn-primary   mb-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cancel">X</a>
         </div>
     </form>
 

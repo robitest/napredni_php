@@ -1,19 +1,19 @@
 <?php
 
 use Core\Database;
+use Core\Session;
 
 if (!isset($_GET['id'])) {
     abort();
 }
 
-$db = new Database();
+$db = Database::get();
 
-$members = $db->fetch('SELECT * FROM clanovi WHERE id = ?', [$_GET['id']]);
+$members = $db->query('SELECT * FROM clanovi WHERE id = ?', [$_GET['id']])->findOrFail();
 
-if(empty($members)){
-    abort();
-}
+$pageTitle = 'Uredi Člana';
 
-$pageTitle = 'Clanovi';
-// dd($members);
+$errors = Session::all('errors');
+Session::unflash();
+
 require base_path('views/members/edit.view.php');

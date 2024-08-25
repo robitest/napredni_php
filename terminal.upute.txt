@@ -7,3 +7,5 @@ sudo a2dissite napredni_php
 sudo nano /etc/apache2/sites-available/videoteka.conf 
 sudo a2ensite videoteka
 sudo systemctl restart apache2
+
+ip a

@@ -1,22 +1,25 @@
 <?php
 
 use Core\Database;
+use Core\Session;
+
+$errors = Session::all('errors');
+$returnData = Session::all('returnData');
+Session::unflash();
 
 const QUERY = [
     'genres' => "SELECT * FROM zanrovi ORDER BY id",
     'priceList' => "SELECT * FROM cjenik ORDER BY id"
 ];
 
-$db = new Database();
+$db = Database::get();
 
 // Dohvacanje zanrova
+$genres = $db->query(QUERY['genres'])->all();
 // Dohvacanje cjenika
-try {
-    $genres = $db->query(QUERY['genres']);
-    $priceList = $db->query(QUERY['priceList']);
-} catch (\Exception $exception) {
-    die("Connection failed: {$exception->getmessage()}");
-}
+$priceList = $db->query(QUERY['priceList'])->all();
+
+
 
 require '../views/movies/create.view.php';
 

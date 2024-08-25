@@ -23,23 +23,19 @@ const QUERY = [
     "priceList" => "SELECT * FROM cjenik ORDER BY id"
 ];
 
-$db = new Database();
+$db = Database::get();
 
-try {
-    $movies = $db->fetch(QUERY['movies'], [$_GET['id']]);
-    if(empty($movies)){
-        abort();
-    }
-    $genres = $db->query(QUERY['genres']);
-    if(empty($genres)){
-        abort();
-    }
-    $priceList = $db->query(QUERY['priceList']);
-    if(empty($priceList)){
-        abort();
-    }
-} catch (\Exception $exception) {
-    die("Connection failed: {$exception->getmessage()}");
+$movies = $db->query(QUERY['movies'], [$_GET['id']])->find();
+if(empty($movies)){
+    abort();
+}
+$genres = $db->query(QUERY['genres'])->all();
+if(empty($genres)){
+    abort();
+}
+$priceList = $db->query(QUERY['priceList'])->all();
+if(empty($priceList)){
+    abort();
 }
 
 $pageTitle = 'Filmovi';

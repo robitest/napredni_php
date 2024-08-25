@@ -13,7 +13,7 @@ $data = [
     "zanr" => $_POST['zanr'],
 ];
 
-$db = new Database();
+$db = Database::get();
 $genres = $db->query('SELECT * FROM zanrovi WHERE id = ?', [$_POST['id']]);
 
 if(empty($genres)){

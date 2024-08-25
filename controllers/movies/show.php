@@ -20,15 +20,11 @@ if (!isset($_GET['id'])) {
     abort();
 }
 
-$db = new Database();
+$db = Database::get();
 
-try {
-    $movies = $db->fetch(QUERY['movies'], [$_GET['id']]); // Eto spremno za novu funkciju 
-    if (empty($movies)) {
-        abort();
-    }
-} catch (\PDOException $exception) {
-    throw $exception;
+$movies = $db->query(QUERY['movies'], [$_GET['id']])->find();
+if (empty($movies)) {
+    abort();
 }
 
 require base_path('views/movies/show.view.php');

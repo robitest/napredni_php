@@ -6,7 +6,7 @@ if (!isset($_POST['id'] ) || !isset($_POST['_method']) || $_POST['_method'] !== 
     abort();
 }
 
-$db = new Database();
+$db = Database::get();
 
 try {
     $sql = "DELETE FROM filmovi WHERE id= ?";

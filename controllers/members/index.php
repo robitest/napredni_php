@@ -1,16 +1,16 @@
 <?php
 
 use Core\Database;
+use Core\Session;
 
-$db = new Database();
+$db = Database::get();
 
-try {
-    $sql = "SELECT * FROM clanovi";
-    $members = $db->query($sql);
-} catch (\Exception $exception) {
-    die("Connection failed: {$exception->getmessage()}");
-}
+$sql = "SELECT * from clanovi ORDER BY id";
+$members = $db->query($sql)->all();
 
-$pageTitle = 'Članovi';
+$pageTitle = 'Clanovi';
+
+$message = Session::all('message');
+Session::unflash();
 
 require base_path('views/members/index.view.php');

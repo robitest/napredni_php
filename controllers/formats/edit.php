@@ -8,11 +8,7 @@ if (!isset($_GET['id'])) {
 
 $db = new Database();
 
-$media = $db->fetch('SELECT * FROM mediji WHERE id = ?', [$_GET['id']]);
-
-if(empty($media)){
-    abort();
-}
+$media = $db->query('SELECT * FROM mediji WHERE id = ?', [$_GET['id']])->findOrFail();
 
 $pageTitle = 'Uredi medij';
 

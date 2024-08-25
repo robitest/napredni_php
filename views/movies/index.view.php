@@ -16,6 +16,7 @@ include_once base_path('views/partials/header.php') ?>
                 <th>Godina</th>
                 <th>Žanr</th>
                 <th>Tip Filma</th>
+                <th class="table-action-col"></th>
             </tr>
         </thead>
         <tbody>

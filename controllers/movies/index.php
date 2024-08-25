@@ -1,8 +1,9 @@
 <?php
 
 use Core\Database;
+use Core\Session;
 
-$db = new Database();
+$db = Database::get();
 
 try {
     $sql = "SELECT
@@ -18,11 +19,14 @@ try {
         ORDER BY
             f.id";
 
-    $movies = $db->query($sql);
+    $movies = $db->query($sql)->all();
 
 } catch (\Exception $exception) {
     die("Connection failed: {$exception->getmessage()}");
 }
+
+$message = Session::all('message');
+Session::unflash();
 
 $pageTitle = 'Filmovi';
 

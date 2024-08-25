@@ -2,6 +2,10 @@ body{
     height: 100%;
 }
 
+.no-decor{
+    text-decoration: none !important;
+}
+
 .table-action-col{
     width: 7rem;
 }
@@ -16,3 +20,10 @@ body{
     align-items: center;
 }
 
+nav .nav a.nav-link{
+    color: #ffffff;
+}
+
+nav .nav a.nav-link.active{
+    color: rgb(108, 117, 125);
+}

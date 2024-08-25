@@ -1,10 +1,11 @@
-<?php include_once base_path('views/partials/header.php'); ?>
+<?php include_once base_path('views/partials/header.php'); 
+?>
 
 <main class="container my-3 d-flex flex-column flex-grow-1 vh-100">
     <h1>Uredi Cjenik</h1>
     <hr>
 
-    <form class="row g-3 mt-3" action="/priceList/update" method="POST">
+    <form class="row g-3 mt-3" action="/prices/update" method="POST">
         <input type="hidden" name="_method" value="PATCH">
         <input type="hidden" name="id" value="<?= $prices['id'] ?>">
         <div class="col-auto">

@@ -2,9 +2,8 @@
 
 use Core\Session;
 
-$pageTitle = 'Clanovi';
-
 $errors = Session::all('errors');
 Session::unflash();
 
-require base_path('views/members/create.view.php');
+$pageTitle = 'Mediji';
+require base_path('views/formats/create.view.php');

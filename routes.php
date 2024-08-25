@@ -2,7 +2,17 @@
 
 return [
     '/'                     => 'controllers/home/index.php',
-
+    
+    '/dashboard'              => 'controllers/dashboard/index.php',
+   
+    '/rentals'              => 'controllers/rentals/index.php',
+    '/rentals/show'         => 'controllers/rentals/show.php',
+    '/rentals/create'       => 'controllers/rentals/create.php',
+    '/rentals/store'        => 'controllers/rentals/store.php',
+    '/rentals/edit'         => 'controllers/rentals/edit.php',
+    '/rentals/update'       => 'controllers/rentals/update.php',
+    '/rentals/destroy'      => 'controllers/rentals/destroy.php',
+    
     '/members'              => 'controllers/members/index.php',
     '/members/show'         => 'controllers/members/show.php',
     '/members/create'       => 'controllers/members/create.php',
@@ -27,27 +37,20 @@ return [
     '/movies/update'        => 'controllers/movies/update.php',
     '/movies/destroy'       => 'controllers/movies/destroy.php',
     
-    '/priceList'            => 'controllers/priceList/index.php',
-    '/priceList/show'       => 'controllers/priceList/show.php',
-    '/priceList/create'     => 'controllers/priceList/create.php',
-    '/priceList/store'      => 'controllers/priceList/store.php',
-    '/priceList/edit'       => 'controllers/priceList/edit.php',
-    '/priceList/update'     => 'controllers/priceList/update.php',
-    '/priceList/destroy'    => 'controllers/priceList/destroy.php',
+    '/prices'            => 'controllers/prices/index.php',
+    '/prices/show'       => 'controllers/prices/show.php',
+    '/prices/create'     => 'controllers/prices/create.php',
+    '/prices/store'      => 'controllers/prices/store.php',
+    '/prices/edit'       => 'controllers/prices/edit.php',
+    '/prices/update'     => 'controllers/prices/update.php',
+    '/prices/destroy'    => 'controllers/prices/destroy.php',
 
-    '/media'                => 'controllers/media/index.php',
-    '/media/show'           => 'controllers/media/show.php',
-    '/media/create'         => 'controllers/media/create.php',
-    '/media/store'          => 'controllers/media/store.php',
-    '/media/edit'           => 'controllers/media/edit.php',
-    '/media/update'         => 'controllers/media/update.php',
-    '/media/destroy'        => 'controllers/media/destroy.php',
+    '/formats'                => 'controllers/formats/index.php',
+    '/formats/show'           => 'controllers/formats/show.php',
+    '/formats/create'         => 'controllers/formats/create.php',
+    '/formats/store'          => 'controllers/formats/store.php',
+    '/formats/edit'           => 'controllers/formats/edit.php',
+    '/formats/update'         => 'controllers/formats/update.php',
+    '/formats/destroy'        => 'controllers/formats/destroy.php',
     
-    '/rentals'              => 'controllers/rentals/index.php',
-    '/rentals/show'         => 'controllers/rentals/show.php',
-    '/rentals/create'       => 'controllers/rentals/create.php',
-    '/rentals/store'        => 'controllers/rentals/store.php',
-    '/rentals/edit'         => 'controllers/rentals/edit.php',
-    '/rentals/update'       => 'controllers/rentals/update.php',
-    '/rentals/destroy'      => 'controllers/rentals/destroy.php',
 ];

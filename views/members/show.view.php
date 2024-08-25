@@ -62,7 +62,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-auto">
-            <a href="/members" type="submit" class="btn btn-primary">Natrag na Članove</a>
+            <a href="<?= $_SERVER['HTTP_REFERER'] ?>" type="submit" class="btn btn-primary">Natrag</a>
             </div>
         </div>
     </form>
