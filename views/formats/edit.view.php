@@ -4,17 +4,17 @@
     <h1>Uredi Medij</h1>
     <hr>
 
-    <form class="row g-3 mt-3" action="/media/update" method="POST">
+    <form class="row g-3 mt-3" action="/formats/update" method="POST">
         <input type="hidden" name="_method" value="PATCH">
-        <input type="hidden" name="id" value="<?= $media['id'] ?>">
+        <input type="hidden" name="id" value="<?= $format['id'] ?>">
         <div class="row mb-3">
             <div class="col">
                 <label for="media_type" class="form-label ps-1">Tip Medija</label>
-                <input type="text" class="form-control" id="mediaType" name="media_type" value="<?= $media['tip'] ?>">
+                <input type="text" class="form-control" id="mediaType" name="media_type" value="<?= $format['tip'] ?>">
             </div>
             <div class="col">
                 <label for="last_name" class="form-label ps-1">Koeficijent</label>
-                <input type="text" class="form-control" id="last_name" name="last_name" value="<?= $media['koeficijent'] ?>">
+                <input type="text" class="form-control" id="last_name" name="last_name" value="<?= $format['koeficijent'] ?>">
             </div>
         </div>
        

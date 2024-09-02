@@ -1,81 +1,83 @@
 <?php
 
 namespace Core;
+
 use PDO;
-use PDOException;
 use PDOStatement;
 
-class Database 
-{
-    private ?PDO $pdo;
+class Database {
+
+    private PDO $pdo;
     private PDOStatement $statement;
     private static ?Database $instance = null;
-    
-    public function __construct() 
+
+    public function __construct()
     {
-        $config = require_once base_Path('config/database.php'); 
+        $config = require base_path('config/database.php');
         $dsn = "mysql:host={$config['host']};dbname={$config['dbname']};charset={$config['charset']}";
-        
+
         try {
             $this->pdo = new PDO($dsn, $config['user'], $config['password'], $config['options']);
-
-        } catch (\PDOException $e) {
-            die('Connection failed: ' . $e->getMessage());
+        } catch (\PDOException $exception) {
+            die('Connection to the database has filed! ' . $exception->getMessage());
         }
     }
-    
+
     //Singleton design pattern
     public static function get(): Database
     {
         if (self::$instance === null) {
             self::$instance = new Database();
         }
+
         return self::$instance;
     }
 
-    public function query(string $sql, array $params = []): object | bool
+    public function query($sql, $params = []): self
     {
+        $this->statement = $this->pdo->prepare($sql);
+
         try {
-            $this->statement = $this->pdo->prepare($sql);
             $this->statement->execute($params);
-            return $this; 
-
-        } catch (\Exception $e) {
-            if ($e instanceof PDOException) {
-                throw $e;
+        } catch (\PDOException $e) {
+            if($e->errorInfo[1] === 1451){
+                throw new ResourceInUseException();
             }
-            abort(500);
+            //TODO: return 500 error page with appropriate message
+            die('Something went wrong, please try again ' . $e->getMessage());
         }
-    }
-    
-    public function find(): array
-    {
-        return $this->statement->fetch();
+       
+        return $this;
     }
 
-    public function all(): array
+    public function find()
     {
-        return $this->statement->fetchAll(); 
+       return $this->statement->fetch();
     }
 
-    public function findOrFail(): array
+    public function all()
+    {
+       return $this->statement->fetchAll();
+    }
+
+    public function findOrFail()
     {
         $data = $this->find();
-        
+
         if (empty($data)) {
             abort();
         }
+
         return $data;
     }
 
-    public function connection()
+    public function lastId()
     {
-        return $this->pdo;
+        return $this->pdo->lastInsertId();
     }
 
-    public function closeConnection()
+    public function connection(): PDO
     {
-        $this->pdo = null;
-        return null;
+        return $this->pdo;
     }
 }

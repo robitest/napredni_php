@@ -1,5 +1,11 @@
 <?php
+use Controllers\GenresController;
+use Core\Router;
 
+// dd(IndexController::class);
+$router = new Router();
+
+$router->get('genres', [GenresController::class, 'index']);
 return [
     '/'                     => 'controllers/home/index.php',
     
@@ -21,13 +27,13 @@ return [
     '/members/update'       => 'controllers/members/update.php',
     '/members/destroy'      => 'controllers/members/destroy.php',
 
-    '/genres'               => 'controllers/genres/index.php',
-    '/genres/show'          => 'controllers/genres/show.php',
-    '/genres/create'        => 'controllers/genres/create.php',
-    '/genres/store'         => 'controllers/genres/store.php',
-    '/genres/edit'          => 'controllers/genres/edit.php',
-    '/genres/update'        => 'controllers/genres/update.php',
-    '/genres/destroy'       => 'controllers/genres/destroy.php',
+    '/genres'               => [GenresController::class, 'index'],
+    '/genres/show'          => [GenresController::class, 'show'],
+    '/genres/create'        => [GenresController::class, 'store'],
+    '/genres/store'         => [GenresController::class, 'store'],
+    '/genres/edit'          => [GenresController::class, 'edit'],
+    '/genres/update'        => [GenresController::class, 'update'],
+    '/genres/destroy'       => [GenresController::class, 'destroy'],
 
     '/movies'               => 'controllers/movies/index.php',
     '/movies/show'          => 'controllers/movies/show.php',
