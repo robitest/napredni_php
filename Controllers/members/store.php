@@ -21,7 +21,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         'adresa' => ['required', 'string', 'max:100', 'unique:zanrovi'],
         'tel' => ['required', 'string', 'max:100', 'unique:zanrovi'],
         'email' => ['required', 'string', 'max:100', 'unique:zanrovi'],
-        'clanId' => ['required', 'string', 'max:100', 'unique:clanovi'],
     ];
 
     $form = new Validator($rules, $postData);

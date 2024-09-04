@@ -35,49 +35,42 @@
         <main>
             <div class="container py-4">
                 <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-                    <div class="container-fluid">
-                        <h1 class="display-5 fw-bold">Najpopularniji filmovi</h1>
-
-                        <ul class="list-group my-5">
-                            <?php foreach ($popularMovies as $movie): ?>
-                                <li class="list-group-item bg-body-tertiary">
-                                    <?= $movie['naslov_filma'] ?> (<?= $movie['godina_filma'] ?>) - <?= $movie['zanr'] ?>
-                                    <span class="badge text-bg-primary float-end"><?= $movie['tip_filma']?></span>
-                                </li>
-                            <?php endforeach ?>
-                        </ul>
-
-                        <button class="btn btn-outline-secondary" type="button">Vidi sve!</button>
-                    </div>
-                </div>             
-                
-                <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-                    <div class="container-fluid">
-                        <h1 class="display-5 fw-bold">Žanrovi</h1>
-
-                        <div class="d-grid gap-3 mt-5" style="grid-template-columns: 1fr 1fr 1fr;">
-                            <?php $counter = 0 ?>
-                            <?php foreach ($moviesByGenre as $key => $moviesInGenre): ?>
-                                <?php 
-                                    $isEven = $counter % 2 == 0;
-                                    $counter++;
-                                ?>
-                                <div class="h-100 p-5 <?= $isEven ? 'text-bg-dark' : 'bg-body-tertiary border' ?> rounded-3">
-                                    <h2><?= $key ?></h2>
-                                    <ul class="list-group my-4">
-                                        <?php foreach ($moviesInGenre as $movie): ?>
-                                            <li class="list-group-item <?= $isEven ? 'text-bg-dark' : 'bg-body-tertiary' ?>">
-                                                <?= $movie['naslov_filma'] ?> (<?= $movie['godina_filma'] ?>) - <?= $movie['zanr'] ?>
-                                                <span class="badge text-bg-primary float-end"><?= $movie['tip_filma']?></span>
-                                            </li>
-                                        <?php endforeach ?>
-                                    </ul>
-                                    <button class="btn <?= $isEven ? 'btn-outline-light' : 'btn-outline-secondary' ?>" type="button">Vidi vise!</button>
-                                </div>
-                            <?php endforeach ?>
+                <form class="p-4" action="/register/store" method="POST">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="first_name" class="form-label ps-1">Ime</label>
+                            <input type="text" class="form-control" id="fName" name="first_name"><!--  $_POST['first_name'] => 'Novo Ime'; -->
+                        </div>
+                        <div class="col">
+                            <label for="last_name" class="form-label ps-1">Prezime</label>
+                            <input type="text" class="form-control" id="lName" name="last_name"><!--  $_POST['last_name'] => 'Novo Prezime'; -->
                         </div>
                     </div>
-                </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="address" class="form-label ps-1">Adresa</label>
+                            <input type="text" class="form-control" id="address" name="address"><!--  $_POST['address'] => 'Nova Adresa'; -->
+                        </div>
+                        <div class="col">
+                            <label for="tel" class="form-label ps-1">Telefon</label>
+                            <input type="tel" class="form-control" id="phone" name="tel"><!--  $_POST['tel'] => 'Novi Telefon'; -->
+                        </div>
+                    </div>
+                    <div class="row mb-3 ">
+                        <div class="col">
+                            <label for="email" class="form-label ps-1">Email</label> 
+                            <input type="email" class="form-control" id="email" name="email"><!--  $_POST['email'] => 'Novi Email'; -->
+                        </div>
+                        <div class="col">
+                            <label for="password" class="form-label ps-1">Lozinka</label> 
+                            <input type="text" class="form-control" id="password" name="password"><!--  $_POST['member_id'] => 'Novi Clan Id'; -->
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary mb-3">Registriraj se</button>
+                    </div>
+                </form>
+                </div>             
 
                 <footer class="py-3">
                     <ul class="nav justify-content-center border-bottom pb-3 mb-3">

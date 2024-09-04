@@ -1,0 +1,7 @@
+- require_once(/var/www/napredni_php/views/login/create.view.php): Failed to open stream: No such file or directory in /var/www/napredni_php/Controllers/LoginController.php on line 23
+- home link (nje dobro http://algebra.local/#)
+- return btn u register formi  
+- members kontroler
+- movies kontroler
+- prices kontroler
+- formats show view page

@@ -68,15 +68,16 @@
         <tbody>
             <?php foreach ($activeRentals as $activeRental): ?>
                 <tr>
-                    <td><?= $activeRental['rental_id'] ?></td>
-                    <td><a href="/rentals/show?id=<?= $activeRental['rental_id'] ?>" class="text-black no-decor"><i class="bi bi-credit-card me-2"></i> <?= $activeRental['rental_date'] ?></a></td>
-                    <td><a href="/members/show?id=<?= $activeRental['member_id'] ?>" class="text-black link-underline-opacity-0 no-decor"><i class="bi bi-person-circle me-2"></i> <?= $activeRental['member_name'] ?> <?= $activeRental['member_lastname'] ?></a></td>
-                    <td><a href="/movies/show?id=<?= $activeRental['movie_id'] ?>" class="text-black link-underline-opacity-0 no-decor"><i class="bi bi-camera me-2"></i> <?= $activeRental['movie_media'] ?> - <?= $activeRental['movie_title'] ?></a></td>
-                    <td><?= $activeRental['movie_price'] ?></td>
+                    <td><?= $activeRental['pid'] ?></td>
+                    <td><a href="/rentals/show?id=<?= $activeRental['pid'] ?>" class="text-black no-decor"><i class="bi bi-credit-card me-2"></i> <?= $activeRental['datum_posudbe'] ?></a></td>
+                    <td><a href="/members/show?id=<?= $activeRental['cid'] ?>" class="text-black link-underline-opacity-0 no-decor"><i class="bi bi-person-circle me-2"></i> <?= $activeRental['clan'] ?></a></td>
+                    <td><a href="/movies/show?id=<?= $activeRental['fid'] ?>" class="text-black link-underline-opacity-0 no-decor"><i class="bi bi-camera me-2"></i> <?= $activeRental['tip'] ?> - <?= $activeRental['naslov'] ?></a></td>
+                    <td><a href="/movies/show?id=<?= $activeRental['fid'] ?>" class="text-black link-underline-opacity-0 no-decor"><i class="bi bi-<?= $currencies['euro'] ?>"></i> <?= $activeRental['cijena_tip_filma'] ?></td>
                     <td>
-                        <form id="update-form" class="hidden d-inline" method="POST" action="/rentals/update">
-                            <input type="hidden" name="_method" value="PATCH">
-                            <input type="hidden" name="id" value="<?= $activeRental['rental_id'] ?>">
+                        <form action="/rentals/destroy" method="POST" class=" hidend-inline">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="pid" value="<?= $rental['pid'] ?>">
+                            <input type="hidden" name="kid" value="<?= $rental['kid'] ?>">
                             <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Oznaci Vraceno"><i class="bi bi-arrow-counterclockwise"></i></button>
                         </form>
                     </td>
