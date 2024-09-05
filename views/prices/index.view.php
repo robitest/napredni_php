@@ -7,7 +7,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php endif; ?>
-    <h1><?=isset($pageTitle) ? $pageTitle : 'Videoteka Admin';?></h1>
+    <div class="title flex-between">
+        <h1><?=isset($pageTitle) ? $pageTitle : 'Videoteka Cjenik';?></h1>
+        <div class="action-buttons">
+            <a href="/prices/create" type="submit" class="btn btn-primary">Dodaj novi</a>
+        </div>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -26,11 +31,11 @@
                     <td><?= $price['cijena'] . " EUR" ?></td>
                     <td><?= $price['zakasnina_po_danu'] . " EUR" ?></td>
                     <td>
-                        <a href="/prices/edit?id=<?= $price['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Zanr"><i class="bi bi-pencil"></i></a>
+                        <a href="/prices/edit?id=<?= $price['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Cjenik"><i class="bi bi-pencil"></i></a>
                         <form id="delete-form" class="hidden d-inline" method="POST" action="/prices/destroy">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="id" value="<?= $price['id'] ?>">
-                            <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Obrisi Zanr"><i class="bi bi-trash"></i></button>
+                            <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Obrisi Cjenik"><i class="bi bi-trash"></i></button>
                         </form>
                     </td>
                 </tr>

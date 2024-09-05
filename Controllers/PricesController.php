@@ -35,12 +35,11 @@ class PricesController
         if (!isset($_GET['id'])) {
             abort();
         }
+ 
+        $prices= $this->db->query('SELECT * FROM cjenik WHERE id = ?', [$_GET['id']])->findOrFail();
 
-        $genre = $this->db->query('SELECT * from zanrovi WHERE id = ?', [$_GET['id']])->findOrFail();
-    
-        $movies = $this->db->query('SELECT f.*, c.tip_filma FROM filmovi f JOIN cjenik c ON c.id = f.cjenik_id WHERE zanr_id = ?', [$_GET['id']])->all();
-    
-        require base_path('views/genres/show.view.php');
+        require base_path('views/prices/show.view.php');
+
            
     }
 
@@ -54,37 +53,44 @@ class PricesController
         $errors = Session::get('errors');
         Session::unflash();
         
-        $genre = $this->db->query('SELECT * FROM zanrovi WHERE id = ?', [$_GET['id']])->findOrFail();
+        $prices = $this->db->query('SELECT * FROM cjenik WHERE id = ?', [$_GET['id']])->findOrFail();
         
-        $pageTitle = 'Žanrovi';
+        $pageTitle = 'Cjenik';
         
-        require base_path('views/genres/edit.view.php');
+        require base_path('views/prices/edit.view.php');
     }
 
 
     public function update()
     {
+        dd('tu sam');
         if (!isset($_POST['id'] )) {
             abort();
         }
 
-        $genre = $this->db->query('SELECT * FROM zanrovi WHERE id = ?', [$_POST['id']])->findOrFail();
-
         $rules = [
-            'ime' => ['required', 'string', 'max:100', 'unique:zanrovi'],
+            'price_type' => ['required', 'unique:cjenik', 'string', 'max:20', 'min:2'],
+            'price_amount' => ['required', 'numeric', 'max:10'],
+            'late_fee' => ['required', 'numeric', 'max:10'],
         ];
 
         $form = new Validator($rules, $_POST);
         if ($form->notValid()){
+            Session::flash('errors', $form->errors());
             goBack();
         }
 
         $data = $form->getData();
 
-        $sql = "UPDATE zanrovi SET ime = ? WHERE id = ?";
-        $this->db->query($sql, [$data['ime'], $genre['id']]);
+        $sql = "UPDATE cjenik SET tip_filma = ?, cijena = ?, zakasnina_po_danu = ? WHERE id = ?";
+        $this->db->query($sql, [$data['price_type'], $data['price_amount'], $data['late_fee'], $_POST['id']]);
+    
+        Session::flash('message', [
+            'type' => 'success',
+            'message' => "Uspješno uređeni cjenik {$data['price_type']}."
+        ]); 
+        redirect('prices');
 
-        redirect('genres');
     }
 
 
@@ -93,16 +99,21 @@ class PricesController
         $errors = Session::all('errors');
         Session::unflash();
 
-        $pageTitle = 'Žanrovi';
-        require base_path('views/genres/create.view.php');
+        $pageTitle = 'Novi Cjenik';
+        require base_path('views/prices/create.view.php');
     }
 
 
     public function store()
     {
+        if (!isset($_POST['id'] )) {
+            abort();
+        }
         
         $rules = [
-            'ime' => ['required', 'string', 'max:100', 'unique:zanrovi'],
+            'price_type' => ['required', 'unique:cjenik', 'string', 'max:20', 'min:2'],
+            'price_amount' => ['required', 'numeric', 'max:10'],
+            'late_fee' => ['required', 'numeric', 'max:10'],
         ];
         
         $form = new Validator($rules, $_POST);
@@ -113,28 +124,46 @@ class PricesController
         
         $data = $form->getData();
         
-        $sql = "INSERT INTO zanrovi (ime) VALUES (:ime)";
-        $this->db->query($sql, ['ime' => $data['ime']]);
-        
-        redirect('genres');
+        $sql = "INSERT INTO cjenik (tip_filma = ?, cijena = ?, zakasnina_po_danu = ?) VALUES (:tip_filma)";
+        $this->db->query($sql, ['ime' => $data['tip_filma']]);
+
+        Session::flash('message', [
+            'type' => 'success',
+            'message' => "Uspješno kreiran tip filma {$data['tip_filma']}."
+        ]);    
+        redirect('prices');
+
     }
 
 
     public function delete()
     {
-        if (!isset($_POST['id'])) {
+        if (!isset($_POST['id'] )) {
             abort();
         }
-
-        $genre = $this->db->query('SELECT * FROM zanrovi WHERE id = ?', [$_POST['id']])->findOrFail();
-
+        
+        $sql = 'SELECT * from cjenik WHERE id = :id';
+        $price = $this->db->query($sql, ['id' => $_POST['id']])->findOrFail();
+        
+        $sql = "DELETE from cjenik WHERE id = ?";
+        
         try {
-            $this->db->query('DELETE FROM zanrovi WHERE id = ?', [$genre['id']]);
+            $this->db->query($sql, [$_POST['id']]);
         } catch (ResourceInUseException $e) {
-            dd('nemere');
+            Session::flash('message', [
+                'type' => 'danger',
+                'message' => "Ne možete obrisati cjenik {$price['ime']} prije nego obrišete njegove posudbe."
+            ]);
+            goBack();
         }
+        
+        Session::flash('message', [
+            'type' => 'success',
+            'message' => "Uspješno obrisan cjenik '{$price['tip_filma']}'."
+        ]);
+        
+        redirect('prices');
 
-        redirect('genres');
     }
 
 }

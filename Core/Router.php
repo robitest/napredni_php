@@ -51,10 +51,6 @@ class Router
                 $classPath = $route['controller'];
                 $function = $route['function'];
 
-                if($route['auth'] === 'auth' && Session::has('user') === false){
-                    redirect('login');
-                }
-
                 $controller = new $classPath();
                 $controller->$function();
                 exit();
