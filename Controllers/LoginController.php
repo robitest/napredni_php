@@ -1,21 +1,13 @@
 <?php
 
 namespace Controllers;
+
 use Core\Database;
-use Core\Validator;
 use Core\Session;
+use Core\Validator;
 
 class LoginController
 {
-    private Database $db;
-
-
-    public function __construct()
-    {
-        $this->db = Database::get();
-    }
-
-
     public function create()
     {
         $pageTitle = 'Login';
@@ -25,11 +17,12 @@ class LoginController
 
     public function store()
     {
-        // validirati podatke iz forme
         $rules = [
             'email' => ['required', 'email'],
-            'password' => ['required', 'password', 'min:3', 'max:255']
+            'password' => ['required', 'password']
         ];
+        
+        $db = Database::get();
 
         $form = new Validator($rules, $_POST);
         if ($form->notValid()){
@@ -40,29 +33,22 @@ class LoginController
         $data = $form->getData();
         
         // provjeriti da li postoji user sa datim emailom u bazi
-        $user = $this->db->query("SELECT * FROM clanovi WHERE email = ?", [$data['email']]);
+        $user = $db->query("SELECT * FROM clanovi WHERE email = ?", [$data['email']])->find();
 
-        if ($user) {
-            // if (password_hash($data['password'], PASSWORD_BCRYPT) === $user['password']) {
-            if (password_verify($data['password'], $user['password'])) {
-                $this->login($data);
-                redirect('dashboard');
-            }
+        // if (password_hash($data['password'], PASSWORD_BCRYPT) === $user['password'])
+
+        if ($user && password_verify($data['password'], $user['password'])) {
+            $this->login($data);
+            redirect('dashboard');
         } else {
-            // vratiti na login ponovno
-            // vratiti gresku da korisnik ne postoji
+            Session::flash('errors', ['email' => 'Vas email ili passsord ne valjaju']);
+            redirect('login');
         }
-
-        $this->login($data);
-
-        redirect('members');
     }
 
     public function login($data)
     {
         Session::put('user', [
-            'ime' => $data['ime'],
-            'prezime' => $data['prezime'],
             'email' => $data['email'],
         ]);
 
@@ -72,6 +58,6 @@ class LoginController
     public function logout()
     {
         Session::destroy();
+        redirect('');
     }
 }
-

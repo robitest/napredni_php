@@ -76,8 +76,6 @@ class RegisterController
     public function login($data)
     {
         Session::put('user', [
-            'ime' => $data['ime'],
-            'prezime' => $data['prezime'],
             'email' => $data['email'],
         ]);
 

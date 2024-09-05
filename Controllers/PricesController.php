@@ -7,7 +7,7 @@ use Core\Session;
 use Core\Validator;
 use Core\ResourceInUseException;
 
-class GenresController
+class PricesController
 {
 
     private Database $db;
@@ -22,12 +22,11 @@ class GenresController
 
     public function index()
     {
-        // dd('Tu sam');
-        $genres = $this->db->query('SELECT * from zanrovi ORDER BY id')->all();
+        $prices = $this->db->query("SELECT * from cjenik ORDER BY id")->all();
 
-        $pageTitle = 'Žanrovi';
-
-        require '../views/genres/index.view.php';
+        $pageTitle = 'Cjenik';
+        
+        require '../views/prices/index.view.php';
     }
 
 

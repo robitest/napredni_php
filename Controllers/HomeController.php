@@ -2,6 +2,7 @@
 
 namespace Controllers;
 use Core\Database;
+use Core\Session;
 
 class HomeController
 {

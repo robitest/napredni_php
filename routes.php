@@ -41,13 +41,13 @@ $router->patch('/rentals',          [RentalsController::class, 'update']);
 $router->delete('/rentals',         [RentalsController::class, 'delete']);
 
 //Members
-// $router->get('/members',            [MembersController::class, 'index']);
-// $router->get('/members/show',       [MembersController::class, 'show']);
-// $router->get('/members/create',     [MembersController::class, 'create']);
-// $router->post('/members',           [MembersController::class, 'store']);
-// $router->get('/members/edit',       [MembersController::class, 'edit']);
-// $router->patch('/members',          [MembersController::class, 'update']);
-// $router->delete('/members',         [MembersController::class, 'delete']);
+$router->get('/members',            [MembersController::class, 'index']);
+$router->get('/members/show',       [MembersController::class, 'show']);
+$router->get('/members/create',     [MembersController::class, 'create']);
+$router->post('/members',           [MembersController::class, 'store']);
+$router->get('/members/edit',       [MembersController::class, 'edit']);
+$router->patch('/members',          [MembersController::class, 'update']);
+$router->delete('/members',         [MembersController::class, 'delete']);
 
 //Genres
 $router->get('/genres',             [GenresController::class, 'index']);
@@ -59,22 +59,22 @@ $router->patch('/genres',           [GenresController::class, 'update']);
 $router->delete('/genres',          [GenresController::class, 'delete']);
 
 //Movies
-// $router->get('/movies',             [MoviesController::class, 'index']);
-// $router->get('/movies/show',        [MoviesController::class, 'show']);
-// $router->get('/movies/create',      [MoviesController::class, 'create']);
-// $router->post('/movies',            [MoviesController::class, 'store']);
-// $router->get('/movies/edit',        [MoviesController::class, 'edit']);
-// $router->patch('/movies',           [MoviesController::class, 'update']);
-// $router->delete('/movies',          [MoviesController::class, 'delete']);
+$router->get('/movies',             [MoviesController::class, 'index']);
+$router->get('/movies/show',        [MoviesController::class, 'show']);
+$router->get('/movies/create',      [MoviesController::class, 'create']);
+$router->post('/movies',            [MoviesController::class, 'store']);
+$router->get('/movies/edit',        [MoviesController::class, 'edit']);
+$router->patch('/movies',           [MoviesController::class, 'update']);
+$router->delete('/movies',          [MoviesController::class, 'delete']);
 
 //Prices
-// $router->get('/prices',             [PricesController::class, 'index']);
-// $router->get('/prices/show',        [PricesController::class, 'show']);
-// $router->get('/prices/create',      [PricesController::class, 'create']);
-// $router->post('/prices',            [PricesController::class, 'store']);
-// $router->get('/prices/edit',        [PricesController::class, 'edit']);
-// $router->patch('/prices',           [PricesController::class, 'update']);
-// $router->delete('/prices',          [PricesController::class, 'delete']);
+$router->get('/prices',             [PricesController::class, 'index']);
+$router->get('/prices/show',        [PricesController::class, 'show']);
+$router->get('/prices/create',      [PricesController::class, 'create']);
+$router->post('/prices',            [PricesController::class, 'store']);
+$router->get('/prices/edit',        [PricesController::class, 'edit']);
+$router->patch('/prices',           [PricesController::class, 'update']);
+$router->delete('/prices',          [PricesController::class, 'delete']);
 
 //Formats
 $router->get('/formats',            [FormatsController::class, 'index']);
