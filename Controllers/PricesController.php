@@ -63,7 +63,7 @@ class PricesController
 
     public function update()
     {
-        dd('tu sam');
+
         if (!isset($_POST['id'] )) {
             abort();
         }
@@ -124,13 +124,14 @@ class PricesController
         
         $data = $form->getData();
         
-        $sql = "INSERT INTO cjenik (tip_filma = ?, cijena = ?, zakasnina_po_danu = ?) VALUES (:tip_filma)";
-        $this->db->query($sql, ['ime' => $data['tip_filma']]);
+        $sql = "INSERT INTO cjenik (tip_filma, cijena, zakasnina_po_danu) VALUES (?, ?, ?)";
+        $this->db->query($sql, [$data['price_type'], $data['price_amount'], $data['late_fee']]);
 
         Session::flash('message', [
             'type' => 'success',
             'message' => "Uspješno kreiran tip filma {$data['tip_filma']}."
-        ]);    
+        ]);   
+
         redirect('prices');
 
     }
@@ -152,7 +153,7 @@ class PricesController
         } catch (ResourceInUseException $e) {
             Session::flash('message', [
                 'type' => 'danger',
-                'message' => "Ne možete obrisati cjenik {$price['ime']} prije nego obrišete njegove posudbe."
+                'message' => "Ne možete obrisati cjenik {$price['tip_filma']} prije nego obrišete njegove posudbe."
             ]);
             goBack();
         }
