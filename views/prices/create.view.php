@@ -5,7 +5,7 @@ include_once base_path('views/partials/header.php') ?>
     <h1><?=isset($pageTitle) ? $pageTitle : 'Videoteka - Novi Cjenik';?></h1>
     <hr>
 
-    <form class="row g-3 mt-3" action="/prices/store" method="POST">
+    <form class="row g-3 mt-3" action="/prices" method="POST">
         <div class="row mt-3">
             <div class="col-2">
                 <label for="price_type" class="mt-1">Tip Filma:</label>

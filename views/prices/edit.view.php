@@ -5,7 +5,7 @@
     <h1>Uredi Cjenik</h1>
     <hr>
 
-    <form class="row g-3 mt-3" action="/prices/update" method="PATCH">
+    <form class="row g-3 mt-3" action="/prices" method="PATCH">
         <input type="hidden" name="_method" value="PATCH">
         <input type="hidden" name="id" value="<?= $prices['id'] ?>">
         <div class="row mt-3">
